@@ -21,7 +21,7 @@ export default function TimerChallenge({ title, targetTime }) {
                     setIsTimerStart(false)
                     clearInterval(timer.current)
                     setResult("You lost")
-                    dialog.current.showModal();
+                    dialog.current.open();
                 }
                 return (prev - 10);
             })
@@ -35,7 +35,7 @@ export default function TimerChallenge({ title, targetTime }) {
         setResult("You lost")
         setIsTimerStart(false)
         clearInterval(timer.current)
-        dialog.current.showModal();
+        dialog.current.open();
     }
 
 
