@@ -36,7 +36,7 @@ export default function TimerChallenge({ title, targetTime }) {
     return <>
         <ResultModal onClose={handleReset} ref={dialog} targetTime={targetTime} timeLeft={formattedTimeLeft} />
         <section className="challenge">
-            {timeLeft}
+            {/* {timeLeft} */}
             <h2>{title}</h2>
             <p className="challenge-time">
                 {targetTime} second{targetTime > 1 ? 's' : ''}
