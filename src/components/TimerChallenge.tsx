@@ -21,7 +21,7 @@ export default function TimerChallenge({ title, targetTime }) {
                     setIsTimerStart(false)
                     clearInterval(timer.current)
                     setResult("You lost")
-                    // dialog.current.showModal();
+                    dialog.current.showModal();
                 }
                 return (prev - 10);
             })
@@ -35,16 +35,16 @@ export default function TimerChallenge({ title, targetTime }) {
         setResult("You lost")
         setIsTimerStart(false)
         clearInterval(timer.current)
+        dialog.current.showModal();
     }
 
 
     return <>
-        <ResultModal result={"You Lost!"} />
+        <ResultModal ref={dialog} result={result} targetTime={targetTime} timeLeft={formattedTimeLeft} />
         <section className="challenge">
             {/* debug */}
 
-            <p>{result}</p>
-            <code>{formattedTimeLeft} seconds left</code>
+            {/* <code>{formattedTimeLeft} seconds left</code> */}
             <h2>{title}</h2>
             <p className="challenge-time">
                 {targetTime} second{targetTime > 1 ? 's' : ''}
