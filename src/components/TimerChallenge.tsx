@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
+import ResultModal from "./ResultModal";
 
 export default function TimerChallenge({ title, targetTime }) {
     let timer = useRef();
+    const dialog = useRef();
+
     const [timeLeft, setTimeLeft] = useState(targetTime * 1000)
     const [isTimerStart, setIsTimerStart] = useState(false)
     const [result, setResult] = useState("")
@@ -18,7 +21,7 @@ export default function TimerChallenge({ title, targetTime }) {
                     setIsTimerStart(false)
                     clearInterval(timer.current)
                     setResult("You lost")
-
+                    // dialog.current.showModal();
                 }
                 return (prev - 10);
             })
@@ -35,21 +38,26 @@ export default function TimerChallenge({ title, targetTime }) {
     }
 
 
-    return <section className="challenge">
-        {/* debug */}
-        <p>{result}</p>
-        <code>{formattedTimeLeft} seconds left</code>
-        <h2>{title}</h2>
-        <p className="challenge-time">
-            {targetTime} second{targetTime > 1 ? 's' : ''}
-        </p>
-        <p>
-            <button onClick={isTimerStart ? handleStop : handleStart}>
-                {isTimerStart ? 'Stop Challenge' : 'Challenge'}
-            </button>
-        </p>
-        <p className="">
-            {isTimerStart ? 'Time is running...' : 'Timer Stopped'}
-        </p>
-    </section>
+    return <>
+        <ResultModal result={"You Lost!"} />
+        <section className="challenge">
+            {/* debug */}
+
+            <p>{result}</p>
+            <code>{formattedTimeLeft} seconds left</code>
+            <h2>{title}</h2>
+            <p className="challenge-time">
+                {targetTime} second{targetTime > 1 ? 's' : ''}
+            </p>
+            <p>
+                <button onClick={isTimerStart ? handleStop : handleStart}>
+                    {isTimerStart ? 'Stop Challenge' : 'Challenge'}
+                </button>
+            </p>
+            <p className="">
+                {isTimerStart ? 'Time is running...' : 'Timer Stopped'}
+            </p>
+        </section>
+    </>
+
 }
